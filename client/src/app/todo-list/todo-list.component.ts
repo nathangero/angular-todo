@@ -35,7 +35,9 @@ export class TodoListComponent {
       }
 
       const results = await response.json();
+      // console.log(results)
       this.updateTodos(results);
+      // console.log(this.todos);
 
     } catch (error: any) {
       console.error(error);
