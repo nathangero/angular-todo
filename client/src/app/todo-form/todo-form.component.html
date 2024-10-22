@@ -1,0 +1,8 @@
+<form (ngSubmit)="onSubmitNewTodo($event)">
+  <h2 class="text-3xl">Add a new todo</h2>
+
+  <input class="border-2 rounded border-black p-2" name="newTodo" [(ngModel)]="newTodo"
+    (ngModelChange)="onChangeNewTodo($event)" />
+
+  <button class="bg-blue-500 text-white rounded p-2 m-2">Add</button>
+</form>
