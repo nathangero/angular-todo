@@ -13,6 +13,5 @@ export class TodoListComponent {
   INDEX_TODO_COMPLETION = 1;
 
   @Input() todos!: { [key: number]: [string, boolean] };
-  @Input() updateTodos!: (todos: { [key: number]: [string, boolean] }) => void;
 
 }
