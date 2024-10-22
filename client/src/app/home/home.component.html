@@ -3,5 +3,5 @@
 
   <app-todo-form [updateTodos]="updateTodos.bind(this)"></app-todo-form>
 
-  <app-todo-list [todos]="todos"></app-todo-list>
+  <app-todo-list [todos]="todos" [updateTodos]="updateTodos.bind(this)"></app-todo-list>
 </div>
