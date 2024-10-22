@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,14 +9,16 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './todo-form.component.css'
 })
 export class TodoFormComponent {
+  @Input() updateTodos!: (todos: { [key: number]: [string, boolean] }) => void;
+
   newTodo: string = "";
 
-  onChangeNewTodo = (value: string) => {
+  onChangeNewTodo(value: string) {
     // console.log("value:", value);
     this.newTodo = value;
   }
 
-  onSubmitNewTodo = async (event: Event) => {
+  async onSubmitNewTodo(event: Event) {
     event.preventDefault();
     event.stopPropagation();
 
@@ -33,8 +35,8 @@ export class TodoFormComponent {
       if (status !== 200) console.error("Couldn't create a new todo");
 
       const result = await response.json();
-
-      this.newTodo = "";
+      this.updateTodos(result);
+      this.newTodo = ""; // Clear the form
     } catch (error: any) {
       console.error(error);
     }
