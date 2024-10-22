@@ -14,7 +14,7 @@
       <div class="flex-1">
         <input type="checkbox" class="form-checkbox h-6 w-6" [checked]="todo.value[INDEX_TODO_COMPLETION]" />
       </div>
-      <button type="button" class="text-white bg-red-700 rounded px-2">X</button>
+      <button type="button" class="text-white bg-red-700 rounded px-2" (click)="onClickDeleteTodo(+todo.key)">X</button>
     </li>
   </ul>
 </div>
