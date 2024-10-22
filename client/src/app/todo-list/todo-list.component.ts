@@ -15,10 +15,44 @@ export class TodoListComponent {
   @Input() todos!: { [key: number]: [string, boolean] };
   @Input() updateTodos!: (todos: { [key: number]: [string, boolean] }) => void;
 
+  async onClickUpdateTodo(checked: boolean, index: number) {
+    // console.log(checked);
 
-  async onClickDeleteTodo(timestamp: number) {
+    const body = {
+      timestamp: index,
+      completed: checked
+    }
+
     try {
-      const response = await (fetch(`http://localhost:3001/${timestamp}`, {
+      const response = await (fetch("http://localhost:3001/todo", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body)
+      }));
+
+      const status = response.status;
+      if (status !== 200) {
+        console.error("Couldn't update todo");
+        return;
+      }
+
+      const result = await response.json();
+
+      this.updateTodos({
+        ...this.todos,
+        [index]: result
+      });
+
+    } catch (error: any) {
+      console.error(error);
+    }
+  }
+
+  async onClickDeleteTodo(index: number) {
+    try {
+      const response = await (fetch(`http://localhost:3001/${index}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

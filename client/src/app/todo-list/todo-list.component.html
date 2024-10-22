@@ -12,7 +12,8 @@
     <li class="flex items-center font-bold text-lg mx-auto max-w-xl border-b border-gray-300">
       <label class="flex-1 font-semibold text-3xl mb-3">{{todo.value[INDEX_TODO_NAME]}}</label>
       <div class="flex-1">
-        <input type="checkbox" class="form-checkbox h-6 w-6" [checked]="todo.value[INDEX_TODO_COMPLETION]" />
+        <input #checkbox type="checkbox" class="form-checkbox h-6 w-6"
+          (change)="onClickUpdateTodo(checkbox.checked, +todo.key)" [checked]="todo.value[INDEX_TODO_COMPLETION]" />
       </div>
       <button type="button" class="text-white bg-red-700 rounded px-2" (click)="onClickDeleteTodo(+todo.key)">X</button>
     </li>
