@@ -11,4 +11,7 @@ import { TodoListComponent } from "../todo-list/todo-list.component";
 })
 export class HomeComponent {
   todos: { [key: number]: [string, boolean] } = {};
+  updateTodos(todos: { [key: number]: [string, boolean] }) {
+    this.todos = todos;
+  }
 }
