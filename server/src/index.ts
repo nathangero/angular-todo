@@ -5,9 +5,10 @@ import cors from "cors";
 const app = express();
 const PORT = 3001;
 
-const DB: { [key: number]: [string, boolean] } = {};
-const INDEX_TODO_NAME = 0;
-const INDEX_TODO_COMPLETION = 1;
+let index = 1; // Like SQL primary keys
+const DB: { [key: number]: { [key: string]: any } } = {};
+const KEY_TODO_TITLE = "title";
+const KEY_TODO_COMPLETION = "completed";
 
 app.use(cors());
 app.use(express.json());
@@ -28,9 +29,12 @@ app.put("/todo", (req: Request, res: Response) => {
   // console.log("put todo");
 
   const todo = req.body.todo;
-  const time = Date.now();
-  DB[time] = [todo, false];
+  DB[index] = {
+    [KEY_TODO_TITLE]: todo,
+    [KEY_TODO_COMPLETION]: false,
+  };
 
+  index++;
   console.log(DB);
 
   res.status(200).json(DB);
@@ -43,19 +47,19 @@ app.patch("/todo", (req: Request, res: Response) => {
   const todoName = req.body.todoName;
   const completed = req.body.completed;
 
-  if (todoName) DB[timestamp][INDEX_TODO_NAME] = todoName; // Edit the todo name if it exists
-  DB[timestamp][INDEX_TODO_COMPLETION] = completed;
+  if (todoName) DB[timestamp][KEY_TODO_TITLE] = todoName; // Edit the todo name if it exists
+  DB[timestamp][KEY_TODO_COMPLETION] = completed;
 
   res.status(200).json(DB[timestamp]);
 });
 
-app.delete("/:timestamp", (req: Request, res: Response) => {
+app.delete("/:index", (req: Request, res: Response) => {
   // console.log("delete todo");
 
-  const timestamp = parseInt(req.params.timestamp);
+  const index = parseInt(req.params.index);
   // console.log("delete todo at timestamp:", timestamp);
 
-  delete DB[timestamp];
+  delete DB[index];
   res.status(200).json(DB);
 });
 

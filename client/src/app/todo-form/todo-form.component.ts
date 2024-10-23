@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './todo-form.component.css'
 })
 export class TodoFormComponent {
-  @Input() updateTodos!: (todos: { [key: number]: [string, boolean] }) => void;
+  @Input() updateTodos!: (todos: { [key: number]: { [key: string]: any } }) => void;
 
   newTodo: string = "";
 
