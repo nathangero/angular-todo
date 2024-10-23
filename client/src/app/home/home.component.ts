@@ -10,8 +10,8 @@ import { TodoListComponent } from "../todo-list/todo-list.component";
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  todos: { [key: number]: [string, boolean] } = {};
-  updateTodos(todos: { [key: number]: [string, boolean] }) {
+  todos: { [key: number]: { [key: string]: any } } = {};
+  updateTodos(todos: { [key: number]: { [key: string]: any } }) {
     this.todos = todos;
   }
 

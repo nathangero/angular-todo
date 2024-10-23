@@ -9,11 +9,11 @@ import { Component, Input } from '@angular/core';
   styleUrl: './todo-list.component.css'
 })
 export class TodoListComponent {
-  INDEX_TODO_NAME = 0;
-  INDEX_TODO_COMPLETION = 1;
+  KEY_TODO_TITLE = "title";
+  KEY_TODO_COMPLETION = "completed";
 
-  @Input() todos!: { [key: number]: [string, boolean] };
-  @Input() updateTodos!: (todos: { [key: number]: [string, boolean] }) => void;
+  @Input() todos!: { [key: number]: { [key: string]: any } };
+  @Input() updateTodos!: (todos: { [key: number]: { [key: string]: any } }) => void;
 
   async onClickUpdateTodo(checked: boolean, index: number) {
     // console.log(checked);
