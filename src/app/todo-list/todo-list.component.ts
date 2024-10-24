@@ -19,7 +19,7 @@ export class TodoListComponent {
     // console.log(checked);
 
     const body = {
-      timestamp: index,
+      index: index,
       completed: checked
     }
 
