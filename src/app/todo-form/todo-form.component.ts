@@ -23,7 +23,7 @@ export class TodoFormComponent {
     event.stopPropagation();
 
     try {
-      const response = await fetch("http://localhost:3001/todo", {
+      const response = await fetch("http://localhost:3001/api/todos", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

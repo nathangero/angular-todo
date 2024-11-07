@@ -21,7 +21,7 @@ export class HomeComponent {
 
   async getAllTodos(): Promise<void> {
     try {
-      const response = await fetch("http://localhost:3001/allTodos", {
+      const response = await fetch("http://localhost:3001/api/todos/all", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
