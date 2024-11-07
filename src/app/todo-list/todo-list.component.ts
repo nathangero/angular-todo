@@ -24,7 +24,7 @@ export class TodoListComponent {
     }
 
     try {
-      const response = await (fetch("http://localhost:3001/todo", {
+      const response = await (fetch("http://localhost:3001/api/todos", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export class TodoListComponent {
 
   async onClickDeleteTodo(index: number) {
     try {
-      const response = await (fetch(`http://localhost:3001/${index}`, {
+      const response = await (fetch(`http://localhost:3001/api/todos/${index}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
